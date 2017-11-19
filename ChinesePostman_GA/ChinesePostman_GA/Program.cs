@@ -20,7 +20,7 @@ namespace ChinesePostman_GA
             var crossover = new OrderedCrossover();
             var mutation = new ReverseSequenceMutation();
             var fitness = new CPFitness();
-            var chromosome = new CPChromosome();
+            var chromosome = new CPChromosome(20);
             var population = new Population(50, 70, chromosome);
 
             var ga = new GeneticAlgorithm(population, fitness, selection, crossover, mutation);

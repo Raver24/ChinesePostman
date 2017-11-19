@@ -12,3 +12,18 @@ C:\Users\Łukasz\Documents\Visual Studio 2015\Projects\ChinesePostman_GA\Chinese
 C:\Users\Łukasz\Documents\Visual Studio 2015\Projects\ChinesePostman_GA\ChinesePostman_GA\bin\Debug\GeneticSharp.Infrastructure.Framework.xml
 C:\Users\Łukasz\Documents\Visual Studio 2015\Projects\ChinesePostman_GA\ChinesePostman_GA\bin\Debug\GeneticSharp.Infrastructure.Threading.pdb
 C:\Users\Łukasz\Documents\Visual Studio 2015\Projects\ChinesePostman_GA\ChinesePostman_GA\bin\Debug\SmartThreadPool.pdb
+C:\Users\Łukasz\Documents\GitHub\ChinesePostman\ChinesePostman_GA\ChinesePostman_GA\bin\Debug\ChinesePostman_GA.exe.config
+C:\Users\Łukasz\Documents\GitHub\ChinesePostman\ChinesePostman_GA\ChinesePostman_GA\obj\Debug\ChinesePostman_GA.exe
+C:\Users\Łukasz\Documents\GitHub\ChinesePostman\ChinesePostman_GA\ChinesePostman_GA\obj\Debug\ChinesePostman_GA.pdb
+C:\Users\Łukasz\Documents\GitHub\ChinesePostman\ChinesePostman_GA\ChinesePostman_GA\obj\Debug\ChinesePostman_GA.csprojResolveAssemblyReference.cache
+C:\Users\Łukasz\Documents\GitHub\ChinesePostman\ChinesePostman_GA\ChinesePostman_GA\bin\Debug\ChinesePostman_GA.exe
+C:\Users\Łukasz\Documents\GitHub\ChinesePostman\ChinesePostman_GA\ChinesePostman_GA\bin\Debug\ChinesePostman_GA.pdb
+C:\Users\Łukasz\Documents\GitHub\ChinesePostman\ChinesePostman_GA\ChinesePostman_GA\bin\Debug\GeneticSharp.Domain.dll
+C:\Users\Łukasz\Documents\GitHub\ChinesePostman\ChinesePostman_GA\ChinesePostman_GA\bin\Debug\GeneticSharp.Extensions.dll
+C:\Users\Łukasz\Documents\GitHub\ChinesePostman\ChinesePostman_GA\ChinesePostman_GA\bin\Debug\GeneticSharp.Infrastructure.Framework.dll
+C:\Users\Łukasz\Documents\GitHub\ChinesePostman\ChinesePostman_GA\ChinesePostman_GA\bin\Debug\GeneticSharp.Infrastructure.Threading.dll
+C:\Users\Łukasz\Documents\GitHub\ChinesePostman\ChinesePostman_GA\ChinesePostman_GA\bin\Debug\NCalc.dll
+C:\Users\Łukasz\Documents\GitHub\ChinesePostman\ChinesePostman_GA\ChinesePostman_GA\bin\Debug\SmartThreadPool.dll
+C:\Users\Łukasz\Documents\GitHub\ChinesePostman\ChinesePostman_GA\ChinesePostman_GA\bin\Debug\GeneticSharp.Infrastructure.Framework.xml
+C:\Users\Łukasz\Documents\GitHub\ChinesePostman\ChinesePostman_GA\ChinesePostman_GA\bin\Debug\GeneticSharp.Infrastructure.Threading.pdb
+C:\Users\Łukasz\Documents\GitHub\ChinesePostman\ChinesePostman_GA\ChinesePostman_GA\bin\Debug\SmartThreadPool.pdb

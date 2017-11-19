@@ -22,32 +22,33 @@ namespace ChinesePostman_GA
             foreach (var g in genes)
             {
                 var currentCityIndex = Convert.ToInt32(g.Value, CultureInfo.InvariantCulture);
-                distanceSum += CalcDistanceTwoCities(Cities[currentCityIndex], Cities[lastCityIndex]); // wczytywanie odleglosci z klasy Cities
+                //distanceSum += CalcDistanceTwoCities(Cities[currentCityIndex], Cities[lastCityIndex]); // wczytywanie odleglosci z klasy Cities
                 lastCityIndex = currentCityIndex;
 
                 citiesIndexes.Add(lastCityIndex);
             }
 
-            distanceSum += CalcDistanceTwoCities(Cities[citiesIndexes.Last()], Cities[citiesIndexes.First()]);
+            //distanceSum += CalcDistanceTwoCities(Cities[citiesIndexes.Last()], Cities[citiesIndexes.First()]);
 
-            var fitness = 1.0 - (distanceSum / (Cities.Count * 1000.0));
+            //var fitness = 1.0 - (distanceSum / (Cities.Count * 1000.0));
 
             ((CPChromosome)chromosome).Distance = distanceSum;
 
             // There is repeated cities on the indexes?
-            var diff = Cities.Count - citiesIndexes.Distinct().Count();
+            //var diff = Cities.Count - citiesIndexes.Distinct().Count();
 
-            if (diff > 0)
-            {
-                fitness /= diff;
-            }
+            //if (diff > 0)
+            //{
+            //   fitness /= diff;
+            // }
 
-            if (fitness < 0)
-            {
-                fitness = 0;
-            }
+            //if (fitness < 0)
+            //{
+            //     fitness = 0;
+            //}
 
-            return fitness;
+            // return fitness;
+            return 0;
 
         }
     }
