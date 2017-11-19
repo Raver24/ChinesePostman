@@ -13,3 +13,6 @@ C:\Users\Łukasz\Documents\Visual Studio 2015\Projects\ChinesePostman_GA\Chinese
 C:\Users\Łukasz\Documents\Visual Studio 2015\Projects\ChinesePostman_GA\ChinesePostman_GA\bin\Debug\GeneticSharp.Infrastructure.Framework.xml
 C:\Users\Łukasz\Documents\Visual Studio 2015\Projects\ChinesePostman_GA\ChinesePostman_GA\bin\Debug\GeneticSharp.Infrastructure.Threading.pdb
 C:\Users\Łukasz\Documents\Visual Studio 2015\Projects\ChinesePostman_GA\ChinesePostman_GA\bin\Debug\SmartThreadPool.pdb
+C:\9 semestr\ISK\PostmanProblem\ChinesePostman_GA\ChinesePostman_GA\bin\Debug\ChinesePostman_GA.exe.config
+C:\9 semestr\ISK\PostmanProblem\ChinesePostman_GA\ChinesePostman_GA\obj\Debug\ChinesePostman_GA.exe
+C:\9 semestr\ISK\PostmanProblem\ChinesePostman_GA\ChinesePostman_GA\obj\Debug\ChinesePostman_GA.pdb
