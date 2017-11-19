@@ -1,0 +1,9 @@
+1. Wczytywanie i przetwarzenie danych z pliku txt
+2. Dodawanie klasy Road:
+ - cityfrom
+ - cityTo
+ - cost
+ - isTravelled
+ - metoda getAllRoads()
+3. Generowanie radnomowych chromosomów, tak aby istnia³y krawêdzie miêdzy wylosowanymi miastami
+4. Przerobienie klasy CPFitness..
