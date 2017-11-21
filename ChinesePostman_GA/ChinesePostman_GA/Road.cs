@@ -12,6 +12,7 @@ namespace ChinesePostman_GA
         public int cityTo { get; set; }
         public int cost { get; set; }
         public bool isTravelled { get; set; }
+        public string index { get; set; }
 
         public Road(int cityFrom, int cityTo, int cost, bool isTravelled = false)
         {
@@ -19,6 +20,7 @@ namespace ChinesePostman_GA
             this.cityTo = cityTo;
             this.cost = cost;
             this.isTravelled = isTravelled;
+            this.index = this.cityFrom.ToString() + this.cityTo.ToString();
         }
     }
 

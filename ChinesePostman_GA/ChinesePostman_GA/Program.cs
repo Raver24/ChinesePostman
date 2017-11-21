@@ -51,7 +51,7 @@ namespace ChinesePostman_GA
             var crossover = new OrderedCrossover();
             var mutation = new ReverseSequenceMutation();
             var fitness = new CPFitness();
-            var chromosome = new CPChromosome(roads.Count);
+            var chromosome = new CPChromosome(2*roads.Count);
             var population = new Population(50, 70, chromosome);
 
             var ga = new GeneticAlgorithm(population, fitness, selection, crossover, mutation);

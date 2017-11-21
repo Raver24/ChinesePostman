@@ -21,8 +21,28 @@ namespace ChinesePostman_GA
         /// <param name="numberOfRoads">Number of cities.</param>
         public CPChromosome(int numberOfRoads) : base(numberOfRoads)
         {
+            List<Road> roads = Program.roads;
+
             m_numberOfRoads = numberOfRoads;
-            var roadsIndexes = RandomizationProvider.Current.GetUniqueInts(numberOfRoads, 0, numberOfRoads);
+            int[] roadsIndexes = new int[numberOfRoads];
+            Random random = new Random();
+            roadsIndexes[0] = random.Next(roads.Count);
+            Console.WriteLine(roads[roadsIndexes[0]].index);
+            for (int i = 1; i < m_numberOfRoads; i++)
+            {
+                List<Road> filtered = roads.Where(e => e.cityFrom.Equals(roads[roadsIndexes[i - 1]].cityTo)).ToList();
+                if (filtered.Count.Equals(0))
+                {
+                    break;
+                }
+                else
+                {
+                    int selectedFromFilter = random.Next(filtered.Count);
+                    roadsIndexes[i] = roads.IndexOf(filtered[selectedFromFilter]);
+                    Console.WriteLine(roads[roadsIndexes[i]].index);
+                }
+                
+            }
 
             for (int i = 0; i < numberOfRoads; i++)
             {
