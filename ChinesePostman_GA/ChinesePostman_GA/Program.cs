@@ -35,7 +35,8 @@ namespace ChinesePostman_GA
         {
             #region Loading data from File
 
-            string location = "C:\\9 semestr\\ISK\\PostmanProblem\\ChinesePostman_GA\\ChinesePostman_GA\\sample_data\\easy_sample_data.txt";
+            string location = Directory.GetCurrentDirectory() + "\\Data\\easy_sample_data.txt";
+            
             int[,] data = LoadDataFromFile(location);
             roads = new List<Road>();
             for (int i = 0; i < data.GetLength(0); i++)
@@ -60,6 +61,7 @@ namespace ChinesePostman_GA
             ga.Start();
 
             Console.WriteLine("Best solution found has {0} fitness.", ga.BestChromosome.Fitness);
+            Console.ReadKey();
         }
     }
 }
