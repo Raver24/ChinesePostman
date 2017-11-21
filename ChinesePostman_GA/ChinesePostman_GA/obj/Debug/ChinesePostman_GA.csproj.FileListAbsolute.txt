@@ -27,3 +27,18 @@ C:\Users\Łukasz\Documents\GitHub\ChinesePostman\ChinesePostman_GA\ChinesePostma
 C:\Users\Łukasz\Documents\GitHub\ChinesePostman\ChinesePostman_GA\ChinesePostman_GA\bin\Debug\GeneticSharp.Infrastructure.Framework.xml
 C:\Users\Łukasz\Documents\GitHub\ChinesePostman\ChinesePostman_GA\ChinesePostman_GA\bin\Debug\GeneticSharp.Infrastructure.Threading.pdb
 C:\Users\Łukasz\Documents\GitHub\ChinesePostman\ChinesePostman_GA\ChinesePostman_GA\bin\Debug\SmartThreadPool.pdb
+C:\9 semestr\ISK\PostmanProblem\ChinesePostman_GA\ChinesePostman_GA\bin\Debug\ChinesePostman_GA.exe.config
+C:\9 semestr\ISK\PostmanProblem\ChinesePostman_GA\ChinesePostman_GA\obj\Debug\ChinesePostman_GA.exe
+C:\9 semestr\ISK\PostmanProblem\ChinesePostman_GA\ChinesePostman_GA\obj\Debug\ChinesePostman_GA.pdb
+C:\9 semestr\ISK\PostmanProblem\ChinesePostman_GA\ChinesePostman_GA\bin\Debug\ChinesePostman_GA.exe
+C:\9 semestr\ISK\PostmanProblem\ChinesePostman_GA\ChinesePostman_GA\bin\Debug\ChinesePostman_GA.pdb
+C:\9 semestr\ISK\PostmanProblem\ChinesePostman_GA\ChinesePostman_GA\bin\Debug\GeneticSharp.Domain.dll
+C:\9 semestr\ISK\PostmanProblem\ChinesePostman_GA\ChinesePostman_GA\bin\Debug\GeneticSharp.Extensions.dll
+C:\9 semestr\ISK\PostmanProblem\ChinesePostman_GA\ChinesePostman_GA\bin\Debug\GeneticSharp.Infrastructure.Framework.dll
+C:\9 semestr\ISK\PostmanProblem\ChinesePostman_GA\ChinesePostman_GA\bin\Debug\GeneticSharp.Infrastructure.Threading.dll
+C:\9 semestr\ISK\PostmanProblem\ChinesePostman_GA\ChinesePostman_GA\bin\Debug\NCalc.dll
+C:\9 semestr\ISK\PostmanProblem\ChinesePostman_GA\ChinesePostman_GA\bin\Debug\SmartThreadPool.dll
+C:\9 semestr\ISK\PostmanProblem\ChinesePostman_GA\ChinesePostman_GA\bin\Debug\GeneticSharp.Infrastructure.Framework.xml
+C:\9 semestr\ISK\PostmanProblem\ChinesePostman_GA\ChinesePostman_GA\bin\Debug\GeneticSharp.Infrastructure.Threading.pdb
+C:\9 semestr\ISK\PostmanProblem\ChinesePostman_GA\ChinesePostman_GA\bin\Debug\SmartThreadPool.pdb
+C:\9 semestr\ISK\PostmanProblem\ChinesePostman_GA\ChinesePostman_GA\obj\Debug\ChinesePostman_GA.csprojResolveAssemblyReference.cache

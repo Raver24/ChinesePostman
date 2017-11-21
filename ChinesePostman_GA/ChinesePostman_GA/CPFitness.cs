@@ -13,6 +13,7 @@ namespace ChinesePostman_GA
     {
         public double Evaluate(IChromosome chromosome)
         {
+            List<Road> listOfRoads = Program.roads;
             var genes = chromosome.GetGenes();
             var distanceSum = 0.0;
             var lastCityIndex = Convert.ToInt32(genes[0].Value, CultureInfo.InvariantCulture);

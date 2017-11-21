@@ -11,22 +11,22 @@ namespace ChinesePostman_GA
     class CPChromosome : ChromosomeBase
     {
         #region Fields
-        private int m_numberOfCities;
+        private int m_numberOfRoads;
         #endregion
 
         #region Constructors
         /// <summary>
         /// Initializes a new instance of the <see cref="GeneticSharp.Extensions.Tsp.TspChromosome"/> class.
         /// </summary>
-        /// <param name="numberOfCities">Number of cities.</param>
-        public CPChromosome(int numberOfCities) : base(numberOfCities)
+        /// <param name="numberOfRoads">Number of cities.</param>
+        public CPChromosome(int numberOfRoads) : base(numberOfRoads)
         {
-            m_numberOfCities = numberOfCities;
-            var citiesIndexes = RandomizationProvider.Current.GetUniqueInts(numberOfCities, 0, numberOfCities);
+            m_numberOfRoads = numberOfRoads;
+            var roadsIndexes = RandomizationProvider.Current.GetUniqueInts(numberOfRoads, 0, numberOfRoads);
 
-            for (int i = 0; i < numberOfCities; i++)
+            for (int i = 0; i < numberOfRoads; i++)
             {
-                ReplaceGene(i, new Gene(citiesIndexes[i]));
+                ReplaceGene(i, new Gene(roadsIndexes[i]));
             }
         }
         #endregion
@@ -47,7 +47,7 @@ namespace ChinesePostman_GA
         /// <param name="geneIndex">Gene index.</param>
         public override Gene GenerateGene(int geneIndex)
         {
-            return new Gene(RandomizationProvider.Current.GetInt(0, m_numberOfCities));
+            return new Gene(RandomizationProvider.Current.GetInt(0, m_numberOfRoads));
         }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace ChinesePostman_GA
         /// <returns>The new chromosome.</returns>
         public override IChromosome CreateNew()
         {
-            return new CPChromosome(m_numberOfCities);
+            return new CPChromosome(m_numberOfRoads);
         }
 
         /// <summary>
