@@ -20,7 +20,7 @@ namespace ChinesePostman_GA
             this.cityTo = cityTo;
             this.cost = cost;
             this.isTravelled = isTravelled;
-            this.index = this.cityFrom.ToString() + this.cityTo.ToString();
+            this.index = this.cityFrom.ToString() + "-" + this.cityTo.ToString();
         }
     }
 
