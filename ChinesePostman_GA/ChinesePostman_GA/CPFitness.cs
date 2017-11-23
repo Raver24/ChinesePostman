@@ -16,40 +16,29 @@ namespace ChinesePostman_GA
             List<Road> listOfRoads = Program.roads;
             var genes = chromosome.GetGenes();
             var distanceSum = 0.0;
-            var lastCityIndex = Convert.ToInt32(genes[0].Value, CultureInfo.InvariantCulture);
-            var citiesIndexes = new List<int>();
-            citiesIndexes.Add(lastCityIndex);
+            var lastRoadIndex = Convert.ToInt32(genes[0].Value, CultureInfo.InvariantCulture);
+            var roadsIndexes = new List<int>();
+            roadsIndexes.Add(lastRoadIndex);
             
             foreach (var g in genes)
             {
-                var currentCityIndex = Convert.ToInt32(g.Value, CultureInfo.InvariantCulture);
-                //distanceSum += CalcDistanceTwoCities(Cities[currentCityIndex], Cities[lastCityIndex]); // wczytywanie odleglosci z klasy Cities
-                lastCityIndex = currentCityIndex;
+                var currentRoadIndex = Convert.ToInt32(g.Value, CultureInfo.InvariantCulture);
+                distanceSum += listOfRoads[currentRoadIndex].cost;
+                lastRoadIndex = currentRoadIndex;
 
-                citiesIndexes.Add(lastCityIndex);
+                roadsIndexes.Add(lastRoadIndex);
             }
 
-            //distanceSum += CalcDistanceTwoCities(Cities[citiesIndexes.Last()], Cities[citiesIndexes.First()]);
-
-            //var fitness = 1.0 - (distanceSum / (Cities.Count * 1000.0));
+            var fitness = 1.0 / (distanceSum * genes.Length);
 
             ((CPChromosome)chromosome).Distance = distanceSum;
 
-            // There is repeated cities on the indexes?
-            //var diff = Cities.Count - citiesIndexes.Distinct().Count();
+            if (fitness < 0)
+            {
+                 fitness = 0;
+            }
 
-            //if (diff > 0)
-            //{
-            //   fitness /= diff;
-            // }
-
-            //if (fitness < 0)
-            //{
-            //     fitness = 0;
-            //}
-
-            // return fitness;
-            return 0;
+            return fitness;
 
         }
     }

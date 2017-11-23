@@ -20,7 +20,7 @@ namespace ChinesePostman_GA
         /// <summary>
         /// Initializes a new instance of the <see cref="GeneticSharp.Extensions.Tsp.TspChromosome"/> class.
         /// </summary>
-        /// <param name="numberOfRoads">Number of cities.</param>
+        /// <param name="numberOfRoads">Number of roads.</param>
         public CPChromosome(int numberOfRoads) : base(numberOfRoads)
         {
             List<Road> roads = Program.roads;
@@ -33,8 +33,8 @@ namespace ChinesePostman_GA
 
             startingPoint = roads[roadsIndexes[0]].cityFrom; // point from where we start
 
-            Console.WriteLine("Pierwsza sciezka");
-            Console.WriteLine(roads[roadsIndexes[0]].index);
+            //Console.WriteLine("Pierwsza sciezka");
+            //Console.WriteLine(roads[roadsIndexes[0]].index);
             Road lastRoad = roads[roadsIndexes[roadsIndexes.Count - 1]];
             while (!(lastRoad.cityTo == startingPoint && everyRoadIsTraveled(roads)))
             {
@@ -50,15 +50,19 @@ namespace ChinesePostman_GA
                     returnRoad.isTravelled = true; // set that the reverce of the road is travelled
                 }
 
-                Console.WriteLine(lastRoad.index);
+                //Console.WriteLine(lastRoad.index);
 
             }
             this.m_numberOfRoads = roadsIndexes.Count; // set chromosome genes number as list length
-            Console.WriteLine("Rozmiar chromosomu to: " + this.m_numberOfRoads.ToString());
-            Console.ReadLine();
-            for (int i = 0; i < numberOfRoads; i++)
+            this.Resize(m_numberOfRoads);
+            //Console.WriteLine("Rozmiar chromosomu to: " + this.m_numberOfRoads.ToString());
+            for (int i = 0; i < m_numberOfRoads; i++)
             {
                 ReplaceGene(i, new Gene(roadsIndexes[i]));
+            }
+            foreach (Road road in Program.roads)
+            {
+                road.isTravelled = false;
             }
         }
 

@@ -10,6 +10,8 @@ using GeneticSharp.Domain.Populations;
 using GeneticSharp.Domain;
 using GeneticSharp.Domain.Terminations;
 using System.IO;
+using GeneticSharp.Domain.Chromosomes;
+using System.Globalization;
 
 namespace ChinesePostman_GA
 {
@@ -46,21 +48,25 @@ namespace ChinesePostman_GA
             }
 
             #endregion
-
             var selection = new EliteSelection();
-            var crossover = new OrderedCrossover();
-            var mutation = new ReverseSequenceMutation();
+            var crossover = new OnePointCrossover();
+            var mutation = new TworsMutation();
             var fitness = new CPFitness();
             var chromosome = new CPChromosome(roads.Count);
-            var population = new Population(50, 70, chromosome);
-
+            var population = new Population(10, 20, chromosome);
+            
             var ga = new GeneticAlgorithm(population, fitness, selection, crossover, mutation);
-            ga.Termination = new GenerationNumberTermination(100);
+            ga.Termination = new FitnessStagnationTermination();
 
             Console.WriteLine("GA running...");
             ga.Start();
 
             Console.WriteLine("Best solution found has {0} fitness.", ga.BestChromosome.Fitness);
+            foreach (Gene gene in ga.BestChromosome.GetGenes())
+            {
+                int ind = Convert.ToInt32(gene.Value, CultureInfo.InvariantCulture);
+                Console.WriteLine(roads[ind].index);
+            }
             Console.ReadKey();
         }
     }
