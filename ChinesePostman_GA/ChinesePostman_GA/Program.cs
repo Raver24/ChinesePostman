@@ -52,11 +52,11 @@ namespace ChinesePostman_GA
             var crossover = new OnePointCrossover();
             var mutation = new TworsMutation();
             var fitness = new CPFitness();
-            var chromosome = new CPChromosome(roads.Count);
-            var population = new Population(10, 20, chromosome);
+            var chromosome = new CPChromosome(3*roads.Count);
+            var population = new Population(10, 200, chromosome);
             
             var ga = new GeneticAlgorithm(population, fitness, selection, crossover, mutation);
-            ga.Termination = new FitnessStagnationTermination();
+            ga.Termination = new GenerationNumberTermination(1000);
 
             Console.WriteLine("GA running...");
             ga.Start();
@@ -64,7 +64,7 @@ namespace ChinesePostman_GA
             Console.WriteLine("Best solution found has {0} fitness.", ga.BestChromosome.Fitness);
             foreach (Gene gene in ga.BestChromosome.GetGenes())
             {
-                int ind = Convert.ToInt32(gene.Value, CultureInfo.InvariantCulture);
+               int ind = Convert.ToInt32(gene.Value, CultureInfo.InvariantCulture);
                 Console.WriteLine(roads[ind].index);
             }
             Console.ReadKey();

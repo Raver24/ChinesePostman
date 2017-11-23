@@ -26,36 +26,43 @@ namespace ChinesePostman_GA
             List<Road> roads = Program.roads;
 
             m_numberOfRoads = numberOfRoads;
-            List<int> roadsIndexes = new List<int>(); //list to hold indexes of roads in order
+            notUsableIndex = -1;
+            int[] roadsIndexes = new int[m_numberOfRoads]; //list to hold indexes of roads in order
 
             Random random = new Random(); //object to random mechanism
-            roadsIndexes.Add(random.Next(roads.Count)); //Random search for first road
+            roadsIndexes[0]= random.Next(roads.Count); //Random search for first road
 
             startingPoint = roads[roadsIndexes[0]].cityFrom; // point from where we start
-
+            bool completed = false; //variable to verify, if algorithm made full cycle
             //Console.WriteLine("Pierwsza sciezka");
             //Console.WriteLine(roads[roadsIndexes[0]].index);
-            Road lastRoad = roads[roadsIndexes[roadsIndexes.Count - 1]];
-            while (!(lastRoad.cityTo == startingPoint && everyRoadIsTraveled(roads)))
+            for (int i = 1; i < m_numberOfRoads; i++)
             {
-                List<Road> filtered = roads.Where(e => e.cityFrom.Equals((lastRoad.cityTo))).ToList(); //new list with filtered roads, that have cityFrom set as same as previous element cityTo
+
+                List<Road> filtered = roads.Where(e => e.cityFrom.Equals(roads[roadsIndexes[i - 1]].cityTo)).ToList(); //new list with filtered roads, that have cityFrom set as same as previous element cityTo
 
                 int selectedFromFilter = random.Next(filtered.Count); //get random road from filtered ones
-                roadsIndexes.Add(roads.IndexOf(filtered[selectedFromFilter]));//set this road as next
-                lastRoad = roads[roadsIndexes[roadsIndexes.Count - 1]];
-                lastRoad.isTravelled = true; // set that this road is travelled
-                Road returnRoad = roads.Find(e => e.index.Equals(lastRoad.cityTo.ToString() + "-" + lastRoad.cityFrom.ToString())); // getting return road object
+                roadsIndexes[i] = roads.IndexOf(filtered[selectedFromFilter]);//set this road as next
+                                                                              
+
+                roads[roadsIndexes[i]].isTravelled = true; // set that this road is travelled
+                Road returnRoad = roads.Find(e => e.index.Equals(roads[roadsIndexes[i]].cityTo.ToString() + roads[roadsIndexes[i]].cityFrom.ToString())); // getting return road object
                 if (returnRoad != null) // resisting exceptions when return road is not present in file
                 {
                     returnRoad.isTravelled = true; // set that the reverce of the road is travelled
                 }
-
-                //Console.WriteLine(lastRoad.index);
+                if (completed && this.notUsableIndex == -1) // if algorithm completed all paths, remaining genes does not count in fitness function
+                {
+                    this.notUsableIndex = i;
+                    //Console.WriteLine("Not usable: " + i.ToString());
+                }
+                //Console.WriteLine(roads[roadsIndexes[i]].index);
+                if (roads[roadsIndexes[i]].cityTo == startingPoint && everyRoadIsTraveled(roads)) // checking if the current end point is exact as starting point and if all roads were travelled at least once
+                {
+                    completed = true;
+                }
 
             }
-            this.m_numberOfRoads = roadsIndexes.Count; // set chromosome genes number as list length
-            this.Resize(m_numberOfRoads);
-            //Console.WriteLine("Rozmiar chromosomu to: " + this.m_numberOfRoads.ToString());
             for (int i = 0; i < m_numberOfRoads; i++)
             {
                 ReplaceGene(i, new Gene(roadsIndexes[i]));
@@ -85,6 +92,13 @@ namespace ChinesePostman_GA
         /// </summary>
         /// <value>The distance.</value>
         public double Distance { get; internal set; }
+
+        /// <summary>
+        /// Gets the distance.
+        /// </summary>
+        /// <value>The distance.</value>
+        public int notUsableIndex { get; set; }
+
         #endregion
 
         #region implemented abstract members of ChromosomeBase
