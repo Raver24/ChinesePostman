@@ -11,6 +11,17 @@ namespace ChinesePostman_GA
 {
     class CPFitness : IFitness
     {
+        public bool everyRoadIsTraveled(List<Road> roads)
+        {
+            foreach (var road in roads)
+            {
+                if (road.isTravelled == false)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
         public double Evaluate(IChromosome chromosome)
         {
             List<Road> listOfRoads = Program.roads;
@@ -18,13 +29,30 @@ namespace ChinesePostman_GA
             var distanceSum = 0.0;
             var lastRoadIndex = Convert.ToInt32(genes[0].Value, CultureInfo.InvariantCulture);
             int index = 0; // variable  for checking correct values
+            bool completed = false; //variable to verify, if algorithm made full cycle
+            int notUsableIndex = -1;
+            int startingPoint = listOfRoads[0].cityFrom; // point from where we start
             foreach (var g in genes)
             {
-                var currentRoadIndex = Convert.ToInt32(g.Value, CultureInfo.InvariantCulture);
-                if (!(index == ((CPChromosome)chromosome).notUsableIndex )) //if value equals indeks from not usable genes, return distance immediately
+                var roadIndex = Convert.ToInt32(g.Value, CultureInfo.InvariantCulture);
+                listOfRoads[roadIndex].isTravelled = true; // set that this road is travelled
+                Road returnRoad = listOfRoads.Find(e => e.index.Equals(listOfRoads[roadIndex].cityTo.ToString() + listOfRoads[roadIndex].cityFrom.ToString())); // getting return road object
+                if (returnRoad != null) // resisting exceptions when return road is not present in file
                 {
-                    distanceSum += listOfRoads[currentRoadIndex].cost; //if gene is usable then add cost
-                    lastRoadIndex = currentRoadIndex;
+                    returnRoad.isTravelled = true; // set that the reverce of the road is travelled
+                }
+                if (completed && notUsableIndex == -1) // if algorithm completed all paths, remaining genes does not count in fitness function
+                {
+                    notUsableIndex = index;
+                }
+                if (listOfRoads[roadIndex].cityTo == startingPoint && everyRoadIsTraveled(listOfRoads)) // checking if the current end point is exact as starting point and if all roads were travelled at least once
+                {
+                    completed = true;
+                }
+                if (!(index == notUsableIndex )) //if value equals indeks from not usable genes, return distance immediately
+                {
+                    distanceSum += listOfRoads[roadIndex].cost; //if gene is usable then add cost
+                    lastRoadIndex = roadIndex;
                     index++;
                 }
                 else
@@ -33,8 +61,11 @@ namespace ChinesePostman_GA
                 }
                 
             }
-
-            var fitness = 1.0 / (distanceSum);
+            foreach (Road road in Program.roads)
+            {
+                road.isTravelled = false;
+            }
+            var fitness = 1.0 / distanceSum;
 
             ((CPChromosome)chromosome).Distance = distanceSum;
 
