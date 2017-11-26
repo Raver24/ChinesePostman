@@ -49,14 +49,14 @@ namespace ChinesePostman_GA
 
             #endregion
             var selection = new EliteSelection();
-            var crossover = new ThreeParentCrossover();
-            var mutation = new ReverseSequenceMutation();
+            var crossover = new TwoPointCrossover();
+            var mutation = new TworsMutation();
             var fitness = new CPFitness();
-            var chromosome = new CPChromosome(3*roads.Count);
-            var population = new Population(3, 200, chromosome);
+            var chromosome = new CPChromosome(roads.Count);
+            var population = new Population(100, 500, chromosome);
             
             var ga = new GeneticAlgorithm(population, fitness, selection, crossover, mutation);
-            ga.Termination = new GenerationNumberTermination(500);
+            ga.Termination = new GenerationNumberTermination(1000);
 
             Console.WriteLine("GA running...");
             ga.Start();

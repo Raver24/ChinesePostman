@@ -32,9 +32,9 @@ namespace ChinesePostman_GA
             bool completed = false; //variable to verify, if algorithm made full cycle
             int notUsableIndex = -1;
             int startingPoint = listOfRoads[0].cityFrom; // point from where we start
-            foreach (var g in genes)
+            for (int i = 0; i < genes.Length; i++)
             {
-                var roadIndex = Convert.ToInt32(g.Value, CultureInfo.InvariantCulture);
+                var roadIndex = Convert.ToInt32(genes[i].Value, CultureInfo.InvariantCulture);
                 listOfRoads[roadIndex].isTravelled = true; // set that this road is travelled
                 Road returnRoad = listOfRoads.Find(e => e.index.Equals(listOfRoads[roadIndex].cityTo.ToString() + listOfRoads[roadIndex].cityFrom.ToString())); // getting return road object
                 if (returnRoad != null) // resisting exceptions when return road is not present in file
@@ -49,16 +49,30 @@ namespace ChinesePostman_GA
                 {
                     completed = true;
                 }
-                if (!(index == notUsableIndex )) //if value equals indeks from not usable genes, return distance immediately
+                if (!(index == notUsableIndex)) //if value equals indeks from not usable genes, return distance immediately
                 {
-                    distanceSum += listOfRoads[roadIndex].cost; //if gene is usable then add cost
-                    lastRoadIndex = roadIndex;
-                    index++;
+                    if (i != 0 && listOfRoads[roadIndex].cityFrom != listOfRoads[Convert.ToInt32(genes[i-1].Value, CultureInfo.InvariantCulture)].cityTo)
+                    {
+                        distanceSum += listOfRoads[roadIndex].cost * 1000; //if road is not correct multiply the cost
+                        lastRoadIndex = roadIndex;
+                        index++;
+                    }
+                    else
+                    {
+                        distanceSum += listOfRoads[roadIndex].cost; //if gene is usable then add cost
+                        lastRoadIndex = roadIndex;
+                        index++;
+                    }
+                    
                 }
                 else
                 {
                     break;  //anyway break operation
                 }
+            }
+            foreach (var g in genes)
+            {
+                
                 
             }
             foreach (Road road in Program.roads)
