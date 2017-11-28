@@ -53,6 +53,7 @@ namespace ChinesePostman_GA
         /// </summary>
         /// <value>The distance.</value>
         public double Distance { get; internal set; }
+        public int notUsableIndex { get; internal set; }
 
         /// <summary>
         /// Gets the distance.

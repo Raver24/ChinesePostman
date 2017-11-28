@@ -38,35 +38,37 @@ namespace ChinesePostman_GA
             #region Loading data from File
 
             string location = Directory.GetCurrentDirectory() + "\\Data\\easy_sample_data.txt";
-            
+
             int[,] data = LoadDataFromFile(location);
             roads = new List<Road>();
             for (int i = 0; i < data.GetLength(0); i++)
             {
                 Road newRoad = new Road(data[i, 0], data[i, 1], data[i, 2]);// one direction cost
                 roads.Add(newRoad);
+                Road reverseRoad = new Road(data[i, 1], data[i, 0], data[i, 3]); // read reverse road
+                roads.Add(reverseRoad);
             }
 
             #endregion
             var selection = new EliteSelection();
             var crossover = new TwoPointCrossover();
-            var mutation = new TworsMutation();
+            var mutation = new ReverseSequenceMutation();
             var fitness = new CPFitness();
-            var chromosome = new CPChromosome(roads.Count);
-            var population = new Population(100, 500, chromosome);
-            
+            var chromosome = new CPChromosome(10*roads.Count);
+            var population = new Population(100, 200, chromosome);
+
             var ga = new GeneticAlgorithm(population, fitness, selection, crossover, mutation);
-            ga.Termination = new GenerationNumberTermination(1000);
+            ga.Termination = new GenerationNumberTermination(500);
 
             Console.WriteLine("GA running...");
             ga.Start();
-
-            Console.WriteLine("Best solution found has {0} fitness.", ga.BestChromosome.Fitness);
             foreach (Gene gene in ga.BestChromosome.GetGenes())
             {
-               int ind = Convert.ToInt32(gene.Value, CultureInfo.InvariantCulture);
-                Console.WriteLine(roads[ind].index);
+                int ind = Convert.ToInt32(gene.Value, CultureInfo.InvariantCulture);
+                Console.WriteLine(roads[ind].index + " koszt: " + roads[ind].cost);
+
             }
+            Console.WriteLine("Best solution found has {0} fitness.", ga.BestChromosome.Fitness);
             Console.ReadKey();
         }
     }
