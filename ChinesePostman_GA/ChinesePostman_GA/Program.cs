@@ -54,20 +54,43 @@ namespace ChinesePostman_GA
             var crossover = new TwoPointCrossover();
             var mutation = new ReverseSequenceMutation();
             var fitness = new CPFitness();
-            var chromosome = new CPChromosome(10*roads.Count);
-            var population = new Population(100, 200, chromosome);
+            var chromosome = new CPChromosome(5*roads.Count);
+            var population = new Population(200, 500, chromosome);
 
             var ga = new GeneticAlgorithm(population, fitness, selection, crossover, mutation);
-            ga.Termination = new GenerationNumberTermination(500);
+            ga.Termination = new GenerationNumberTermination(100);
 
             Console.WriteLine("GA running...");
             ga.Start();
+            Console.WriteLine();
+            bool first = true;
+            int startCityIndex = Convert.ToInt32(ga.BestChromosome.GetGenes()[0].Value, CultureInfo.InvariantCulture);
+            int startCity = roads[startCityIndex].cityFrom;
             foreach (Gene gene in ga.BestChromosome.GetGenes())
             {
                 int ind = Convert.ToInt32(gene.Value, CultureInfo.InvariantCulture);
-                Console.WriteLine(roads[ind].index + " koszt: " + roads[ind].cost);
-
+                if (CPFitness.everyRoadIsTraveled(roads) && roads[ind].cityTo == startCity)
+                {
+                    Console.Write("-" + roads[ind].cityTo.ToString());
+                    break;
+                }
+                else
+                {
+                    if (first)
+                    {
+                        Console.Write(roads[ind].cityFrom.ToString() + "-" + roads[ind].cityTo.ToString());
+                        first = false;
+                    }
+                    else
+                    {
+                        Console.Write("-" + roads[ind].cityTo.ToString());
+                    }
+                    roads[ind].isTravelled = true;
+                    Road returnRoad = roads.Find(e => e.index.Equals(roads[ind].cityTo.ToString() + "-" + roads[ind].cityFrom.ToString()));
+                    returnRoad.isTravelled = true;
+                }
             }
+            Console.WriteLine();
             Console.WriteLine("Best solution found has {0} fitness.", ga.BestChromosome.Fitness);
             Console.ReadKey();
         }

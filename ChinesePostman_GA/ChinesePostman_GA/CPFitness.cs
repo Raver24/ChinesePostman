@@ -11,7 +11,7 @@ namespace ChinesePostman_GA
 {
     class CPFitness : IFitness
     {
-        public bool everyRoadIsTraveled(List<Road> roads)
+        public static bool everyRoadIsTraveled(List<Road> roads)
         {
             foreach (var road in roads)
             {
@@ -59,7 +59,10 @@ namespace ChinesePostman_GA
 
                 }
             }
-
+            if (!everyRoadIsTraveled(listOfRoads))
+            {
+                distanceSum *= 1000;
+            }
             foreach (Road road in Program.roads)
             {
                 road.isTravelled = false;
