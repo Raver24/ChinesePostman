@@ -37,7 +37,7 @@ namespace ChinesePostman_GA
         {
             #region Loading data from File
 
-            string location = Directory.GetCurrentDirectory() + "\\Data\\easy_sample_data.txt";
+            string location = Directory.GetCurrentDirectory() + "\\Data\\graf1_kod.txt";
 
             int[,] data = LoadDataFromFile(location);
             roads = new List<Road>();
@@ -54,11 +54,11 @@ namespace ChinesePostman_GA
             var crossover = new TwoPointCrossover();
             var mutation = new ReverseSequenceMutation();
             var fitness = new CPFitness();
-            var chromosome = new CPChromosome(5*roads.Count);
-            var population = new Population(200, 500, chromosome);
+            var chromosome = new CPChromosome(2*roads.Count);
+            var population = new Population(100, 200, chromosome);
 
             var ga = new GeneticAlgorithm(population, fitness, selection, crossover, mutation);
-            ga.Termination = new GenerationNumberTermination(100);
+            ga.Termination = new GenerationNumberTermination(1000);
 
             Console.WriteLine("GA running...");
             ga.Start();
