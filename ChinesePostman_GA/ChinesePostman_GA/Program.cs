@@ -54,11 +54,11 @@ namespace ChinesePostman_GA
             var crossover = new TwoPointCrossover();
             var mutation = new ReverseSequenceMutation();
             var fitness = new CPFitness();
-            var chromosome = new CPChromosome(2*roads.Count);
+            var chromosome = new CPChromosome(3*roads.Count);
             var population = new Population(100, 200, chromosome);
 
             var ga = new GeneticAlgorithm(population, fitness, selection, crossover, mutation);
-            ga.Termination = new GenerationNumberTermination(1000);
+            ga.Termination = new GenerationNumberTermination(300);
 
             Console.WriteLine("GA running...");
             ga.Start();
@@ -66,9 +66,11 @@ namespace ChinesePostman_GA
             bool first = true;
             int startCityIndex = Convert.ToInt32(ga.BestChromosome.GetGenes()[0].Value, CultureInfo.InvariantCulture);
             int startCity = roads[startCityIndex].cityFrom;
+            int totalCost = 0;
             foreach (Gene gene in ga.BestChromosome.GetGenes())
             {
                 int ind = Convert.ToInt32(gene.Value, CultureInfo.InvariantCulture);
+                totalCost += roads[ind].cost;
                 if (CPFitness.everyRoadIsTraveled(roads) && roads[ind].cityTo == startCity)
                 {
                     Console.Write("-" + roads[ind].cityTo.ToString());
@@ -92,6 +94,7 @@ namespace ChinesePostman_GA
             }
             Console.WriteLine();
             Console.WriteLine("Best solution found has {0} fitness.", ga.BestChromosome.Fitness);
+            Console.WriteLine("Best solution has total cost: {0}", totalCost);
             Console.ReadKey();
         }
     }
