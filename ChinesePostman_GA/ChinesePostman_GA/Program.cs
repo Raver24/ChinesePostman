@@ -12,6 +12,7 @@ using GeneticSharp.Domain.Terminations;
 using System.IO;
 using GeneticSharp.Domain.Chromosomes;
 using System.Globalization;
+using System.Diagnostics;
 
 namespace ChinesePostman_GA
 {
@@ -37,7 +38,7 @@ namespace ChinesePostman_GA
         {
             #region Loading data from File
 
-            string location = Directory.GetCurrentDirectory() + "\\Data\\graf1_kod.txt";
+            string location = Directory.GetCurrentDirectory() + "\\Data\\graf4_kod.txt";
 
             int[,] data = LoadDataFromFile(location);
             roads = new List<Road>();
@@ -58,11 +59,13 @@ namespace ChinesePostman_GA
             var population = new Population(100, 200, chromosome);
 
             var ga = new GeneticAlgorithm(population, fitness, selection, crossover, mutation);
-            ga.Termination = new GenerationNumberTermination(300);
-
+            ga.Termination = new GenerationNumberTermination(100);
+            Stopwatch timer = new Stopwatch();
+            timer.Start();
             Console.WriteLine("GA running...");
             ga.Start();
             Console.WriteLine();
+            timer.Stop();
             bool first = true;
             int startCityIndex = Convert.ToInt32(ga.BestChromosome.GetGenes()[0].Value, CultureInfo.InvariantCulture);
             int startCity = roads[startCityIndex].cityFrom;
@@ -92,9 +95,12 @@ namespace ChinesePostman_GA
                     returnRoad.isTravelled = true;
                 }
             }
+            TimeSpan ts = timer.Elapsed;
+            string elapsedTime = String.Format("{0:00}:{1:00}.{2:00}", ts.Minutes, ts.Seconds, ts.Milliseconds / 10);
             Console.WriteLine();
             Console.WriteLine("Best solution found has {0} fitness.", ga.BestChromosome.Fitness);
             Console.WriteLine("Best solution has total cost: {0}", totalCost);
+            Console.WriteLine("Time running: {0}", elapsedTime);
             Console.ReadKey();
         }
     }
