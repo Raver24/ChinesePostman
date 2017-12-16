@@ -52,14 +52,14 @@ namespace ChinesePostman_GA
 
             #endregion
             var selection = new EliteSelection();
-            var crossover = new TwoPointCrossover();
-            var mutation = new ReverseSequenceMutation();
+            var crossover = new ThreeParentCrossover();
+            var mutation = new TworsMutation();
             var fitness = new CPFitness();
             var chromosome = new CPChromosome(3*roads.Count);
-            var population = new Population(100, 200, chromosome);
+            var population = new Population(200, 400, chromosome);
 
             var ga = new GeneticAlgorithm(population, fitness, selection, crossover, mutation);
-            ga.Termination = new GenerationNumberTermination(100);
+            ga.Termination = new GenerationNumberTermination(400);
             Stopwatch timer = new Stopwatch();
             timer.Start();
             Console.WriteLine("GA running...");
@@ -96,7 +96,7 @@ namespace ChinesePostman_GA
                 }
             }
             TimeSpan ts = timer.Elapsed;
-            string elapsedTime = String.Format("{0:00}:{1:00}.{2:00}", ts.Minutes, ts.Seconds, ts.Milliseconds / 10);
+            string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}", ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds / 10);
             Console.WriteLine();
             Console.WriteLine("Best solution found has {0} fitness.", ga.BestChromosome.Fitness);
             Console.WriteLine("Best solution has total cost: {0}", totalCost);
