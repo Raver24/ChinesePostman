@@ -23,7 +23,7 @@ namespace ChinesePostman_GA
         {
             string[] fileLineContent = File.ReadAllLines(path);
             int[,] dataContent = new int[fileLineContent.Length, 4];
-            for (int i = 0; i < fileLineContent.Length; i++)
+            for (int i = 1; i < fileLineContent.Length; i++)
             {
                 string[] splitted = fileLineContent[i].Split(' ');
                 for (int j = 0; j < 4; j++)
